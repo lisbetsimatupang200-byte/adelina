@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Adikku! 🎂</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; overflow-x:hidden;
+    font-family:Georgia,'Times New Roman',serif;
+    color:#603b4b;
+    background:linear-gradient(135deg,#fff0f5,#ffe0eb 48%,#fff6e9);
+    display:grid; place-items:center; padding:28px 16px;
+  }
+  .sparkle{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+  .sparkle span{position:absolute;bottom:-60px;font-size:26px;opacity:.7;animation:float 12s linear infinite}
+  .sparkle span:nth-child(1){left:8%;animation-delay:0s}
+  .sparkle span:nth-child(2){left:25%;animation-delay:4s;font-size:20px}
+  .sparkle span:nth-child(3){left:78%;animation-delay:2s}
+  .sparkle span:nth-child(4){left:91%;animation-delay:6s;font-size:32px}
+  @keyframes float{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+  .card{
+    position:relative;z-index:1;width:min(100%,620px);text-align:center;
+    background:rgba(255,255,255,.82);padding:clamp(28px,6vw,54px);
+    border:1px solid #fff;border-radius:30px;
+    box-shadow:0 18px 55px rgba(173,91,125,.16);
+  }
+  .top{font:600 12px Arial,sans-serif;letter-spacing:4px;text-transform:uppercase;color:#c16c8d}
+  .cake{font-size:76px;margin:18px 0 8px;animation:bounce 2s ease-in-out infinite}
+  @keyframes bounce{50%{transform:translateY(-9px)}}
+  h1{font-size:clamp(34px,8vw,54px);line-height:1.08;margin:8px 0;color:#b94f78}
+  .subtitle{font:15px Arial,sans-serif;letter-spacing:1px;color:#987181}
+  .divider{color:#e6a0b8;font-size:22px;margin:22px}
+  .message{font-size:18px;line-height:1.8;margin:0 auto;max-width:460px}
+  button{
+    border:0;border-radius:999px;padding:15px 25px;margin-top:28px;
+    background:#c75f88;color:white;font:600 14px Arial,sans-serif;
+    cursor:pointer;box-shadow:0 8px 18px rgba(199,95,136,.25);
+    transition:.2s;
+  }
+  button:hover{transform:translateY(-2px);background:#ad496f}
+  .letter{
+    display:none;text-align:left;margin-top:25px;padding:24px;
+    border-radius:18px;background:#fff4f7;border:1px dashed #e6a0b8;
+    font-size:17px;line-height:1.85;animation:appear .5s ease;
+  }
+  .letter.show{display:block}
+  @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  .signature{text-align:right;color:#b94f78;font-style:italic;margin-top:18px}
+  .footer{font:12px Arial,sans-serif;color:#b38a9a;margin-top:30px}
+  .confetti{position:fixed;top:-15px;width:9px;height:14px;z-index:5;animation:fall 3.5s linear forwards;pointer-events:none}
+  @keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.2}}
+</style>
+</head>
+<body>
+<div class="sparkle" aria-hidden="true">
+  <span>♡</span><span>✦</span><span>♡</span><span>✧</span>
+</div>
+
+<main class="card">
+  <div class="top">A little celebration for you</div>
+  <div class="cake">🎂</div>
+  <h1>Happy Birthday!</h1>
+  <p class="subtitle">Untuk NOVIA 💗</p>
+  <div class="divider">✦ ─── ♡ ─── ✦</div>
+  <p class="message">
+    Hari ini adalah hari spesial mu.
+    Semoga hari-harimu dipenuhi kebahagiaan, cinta, dan hal-hal baik.
+  </p>
+
+  <button id="openLetter" type="button">Buka surat kecil dariku 💌</button>
+
+  <section class="letter" id="letter" aria-live="polite">
+    Selamat ulang tahun❤️<br><br>
+    Semoga semakin bertambah usia, semakin dewasa, selalu diberikan kesehatan,
+    kebahagiaan, dan kemudahan dalam setiap langkah. Semoga semua impian dan
+    cita-citamu satu per satu bisa tercapai.<br><br>
+    Jangan pernah takut untuk mencoba dan jangan mudah menyerah ketika keadaan
+    tidak sesuai harapan. Apa pun yang terjadi, ingat bahwa kamu tidak pernah
+    sendirian. Kakak akan selalu mendoakan dan mendukungmu.<br><br>
+    Tetap jadi dirimu yang baik, ceria, dan penuh semangat. Semoga hidupmu
+    selalu dipenuhi alasan untuk tersenyum. Love you, little sibling! 🥰
+    <div class="signature">With love,<br>lisbet💗</div>
+  </section>
+
+  <div class="footer">Made with love, just for you ✨</div>
+</main>
+
+<script>
+  const button = document.getElementById('openLetter');
+  const letter = document.getElementById('letter');
+
+  button.addEventListener('click', () => {
+    const isOpen = letter.classList.toggle('show');
+    button.textContent = isOpen ? 'Tutup surat 💗' : 'Buka surat kecil dariku 💌';
+    if (isOpen) celebrate();
+  });
+
+  function celebrate(){
+    const colors = ['#f4a6c1','#f7c86b','#c9a7e8','#a8d8c8','#ef8f9f'];
+    for(let i=0;i<65;i++){
+      const piece=document.createElement('i');
+      piece.className='confetti';
+      piece.style.left=Math.random()*100+'vw';
+      piece.style.backgroundColor=colors[Math.floor(Math.random()*colors.length)];
+      piece.style.animationDelay=Math.random()*.8+'s';
+      piece.style.transform=`rotate(${Math.random()*360}deg)`;
+      document.body.appendChild(piece);
+      setTimeout(()=>piece.remove(),4500);
+    }
+  }
+</script>
+</body>
+</html>
